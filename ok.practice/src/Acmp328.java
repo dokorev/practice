@@ -9,7 +9,8 @@ public class Acmp328 {
         // your solution
         // vvvvvvvvvv
         long n = in.nextLong();
-        long ans = n * (n+1) * (n+2)/2;
+        long k = in.nextLong();
+        long ans = k+1 + ((n-2) * (1 + k) * k)/2;
         out.println(ans);
         // ^^^^^^^^^^
         out.close();

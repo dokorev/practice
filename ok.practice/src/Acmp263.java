@@ -8,13 +8,17 @@ public class Acmp263 {
         PrintWriter out = new PrintWriter(System.out);
         // your solution
         // vvvvvvvvvv
-        int n = in.nextInt();
-        int i = in.nextInt();
-        int j = in.nextInt();
-        int d1 = n + Math.min(j, i) - Math.max(j, i);
-        int d2 = Math.max(j, i) - Math.min(j, i);
-        int ans = Math.min(d1, d2) - 1;
-        out.println(ans);
+        int k1 = in.nextInt();
+        int L1 = in.nextInt();
+        int m1 = in.nextInt();
+        int k2 = in.nextInt();
+        int L2 = in.nextInt();
+        int m2 = in.nextInt();
+        int sum1 = k1 * m1 + k2 * m2;
+        int nk1 = (k1*(100 - L1))/100;
+        int nk2 = (k2*(100 - L2))/100;
+        int sum2 = Math.min(nk1, nk2) * (m1 + m2);
+        out.println(sum1 - sum2);
         // ^^^^^^^^^^
         out.close();
     }

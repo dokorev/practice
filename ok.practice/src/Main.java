@@ -12,13 +12,19 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String teamName = in.nextLine();
-                String members[] = new String [3];
-                for (int i = 0; i < 3; i++) {
-                    members[i] = in.nextLine();
+                int sizeI = in.nextInt();
+                in.nextLine();
+                int min = Integer.MAX_VALUE;
+                for (int i = 0; i < sizeI; i++) {
+                    int count = 0;
+                    for (char c : in.nextLine().toCharArray()) {
+                        if (c == '.') {
+                            count++;
+                        }
+                    }
+                    min = Math.min(min, count);
                 }
-                Arrays.sort(members);
-                out.println(teamName + ": " + members[0] + ", " + members[1] + ", " + members[2]);
+                out.println(min);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

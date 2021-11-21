@@ -2,27 +2,29 @@
     import java.io.*;
     import java.util.*;
     public class Main {
-
         // functions if needed
         // vvvvvvvvv
 
         // ^^^^^^^^^
-
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
             PrintWriter out = new PrintWriter(System.out);
             try {
                 // your solution
                 // vvvvvvvvvv
-                // char kb[] = new char [] {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'q'};
-                String kb = "qwertyuiopasdfghjklzxcvbnmq";
-                String l = in.nextLine();
-                char key = l.charAt(0);
-                for (int i = 0; i < kb.length(); i++) {
-                    if (kb.charAt(i) == key) {
-                        out.println(kb.charAt(i+1));
-                        return;
+                String s = in.nextLine();
+                if (s.length() == 5 && 'A' <= s.charAt(0) && s.charAt(0) <= 'H' && '1' <= s.charAt(1) && s.charAt(1) <= '8'
+                        && s.charAt(2) == '-' && 'A' <= s.charAt(3) && s.charAt(3) <= 'H' && '1' <= s.charAt(4)
+                        && s.charAt(4) <= '8') {
+                    int d1 = s.charAt(3) - s.charAt(0);
+                    int dd = s.charAt(4) - s.charAt(1);
+                    if (d1 * d1 + dd * dd == 5) {
+                        out.println("YES");
+                    } else {
+                        out.println("NO");
                     }
+                } else {
+                    out.println("ERROR");
                 }
                 // ^^^^^^^^^^
             } finally {

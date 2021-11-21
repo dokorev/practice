@@ -12,20 +12,13 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String s = in.nextLine();
-                if (s.length() == 5 && 'A' <= s.charAt(0) && s.charAt(0) <= 'H' && '1' <= s.charAt(1) && s.charAt(1) <= '8'
-                        && s.charAt(2) == '-' && 'A' <= s.charAt(3) && s.charAt(3) <= 'H' && '1' <= s.charAt(4)
-                        && s.charAt(4) <= '8') {
-                    int d1 = s.charAt(3) - s.charAt(0);
-                    int dd = s.charAt(4) - s.charAt(1);
-                    if (d1 * d1 + dd * dd == 5) {
-                        out.println("YES");
-                    } else {
-                        out.println("NO");
-                    }
-                } else {
-                    out.println("ERROR");
+                String teamName = in.nextLine();
+                String members[] = new String [3];
+                for (int i = 0; i < 3; i++) {
+                    members[i] = in.nextLine();
                 }
+                Arrays.sort(members);
+                out.println(teamName + ": " + members[0] + ", " + members[1] + ", " + members[2]);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

@@ -12,19 +12,15 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                int sizeI = in.nextInt();
-                in.nextLine();
-                int min = Integer.MAX_VALUE;
-                for (int i = 0; i < sizeI; i++) {
-                    int count = 0;
-                    for (char c : in.nextLine().toCharArray()) {
-                        if (c == '.') {
-                            count++;
-                        }
+                int n = in.nextInt();
+                int count = 0;
+                for (int i = 0; i < n; i++) {
+                    String s = in.next();
+                    if (s.charAt(0) == s.charAt(3)) {
+                        count++;
                     }
-                    min = Math.min(min, count);
                 }
-                out.println(min);
+                out.println(count);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

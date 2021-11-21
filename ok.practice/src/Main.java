@@ -4,7 +4,26 @@
     public class Main {
         // functions if needed
         // vvvvvvvvv
+        private static String intToString(int n) {
+            int length = (int) Math.floor(Math.log10(n)) + 1;
+            char d[] = new char[length];
+            for (int i = length - 1; i >= 0; i--) {
+                int rDigit = n % 10;
+                d[i] = (char) ('0' + rDigit);
+                n /= 10;
+            }
+            return new String(d);
+        }
 
+        private static int sumDigits(String sn) {
+            char chars[] = sn.toCharArray();
+            int sum = 0;
+            for (char c : chars) {
+                int d = c - '0';
+                sum += d;
+            }
+            return sum;
+        }
         // ^^^^^^^^^
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
@@ -12,15 +31,15 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String n = in.next();
-                out.print('1');
-                for (int i = n.length() - 1; i >= 0; i--) {
-                    if (n.charAt(i) == '0') {
-                        out.print('0');
-                    } else  {
-                        break;
-                    }
+                String sn = in.nextLine();
+                int sum = 0;
+                int count = 0;
+                while (sn.length() >= 2) {
+                     sum = sumDigits(sn);
+                     count++;
+                     sn = intToString(sum);
                 }
+                out.println(sn + " " + count);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

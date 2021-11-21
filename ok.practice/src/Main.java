@@ -12,15 +12,21 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                int n = in.nextInt();
-                int count = 0;
-                for (int i = 0; i < n; i++) {
-                    String s = in.next();
-                    if (s.charAt(0) == s.charAt(3)) {
-                        count++;
+                int cur = 0;
+                int min = 0;
+                int max = 0;
+                for (char c : in.next().toCharArray()) {
+                    if (c == '1') {
+                        cur++;
+                    } else if (c == '2') {
+                        cur--;
+                    } else {
+                        throw new Error();
                     }
+                    min = Math.min(min, cur);
+                    max = Math.max(max, cur);
                 }
-                out.println(count);
+                out.println(max - min + 1);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

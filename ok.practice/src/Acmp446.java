@@ -1,7 +1,7 @@
 // acmp.ru
 import java.io.*;
 import java.util.*;
-public class Acmp44 {
+public class Acmp446 {
     // functions if needed
     // vvvvvvvvv
 

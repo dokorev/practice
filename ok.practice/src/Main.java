@@ -4,26 +4,7 @@
     public class Main {
         // functions if needed
         // vvvvvvvvv
-        private static String intToString(int n) {
-            int length = (int) Math.floor(Math.log10(n)) + 1;
-            char d[] = new char[length];
-            for (int i = length - 1; i >= 0; i--) {
-                int rDigit = n % 10;
-                d[i] = (char) ('0' + rDigit);
-                n /= 10;
-            }
-            return new String(d);
-        }
 
-        private static int sumDigits(String sn) {
-            char chars[] = sn.toCharArray();
-            int sum = 0;
-            for (char c : chars) {
-                int d = c - '0';
-                sum += d;
-            }
-            return sum;
-        }
         // ^^^^^^^^^
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
@@ -31,15 +12,34 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String sn = in.nextLine();
-                int sum = 0;
-                int count = 0;
-                while (sn.length() >= 2) {
-                     sum = sumDigits(sn);
-                     count++;
-                     sn = intToString(sum);
+                String line = in.nextLine();
+                int sPos = line.indexOf(' ');
+                String w1 = line.substring(0, sPos);
+                String w2 = line.substring(sPos + 1, line.length());
+                String lcW1 = w1.toLowerCase();
+                String lcW2 = w2.toLowerCase();
+                int lettCount[] = new int [26];
+                for (int i = 0; i < w1.length(); i++) {
+                    int lidx = lcW1.charAt(i) - 'a';
+                    lettCount[lidx] = lettCount[lidx] + 1;
                 }
-                out.println(sn + " " + count);
+                for (int i = 0; i < w2.length(); i++) {
+                    int lidx = lcW2.charAt(i) - 'a';
+                    lettCount[lidx]--;
+                }
+                boolean ans = true;
+                for (int k = 0; k < lettCount.length; k++) {
+                    if (lettCount[k] != 0) {
+                       ans = false;
+                       break;
+                    }
+                }
+                if (ans) {
+                    out.println("Yes");
+                } else {
+                    out.println("No");
+                }
+                // out.println(w1 + ", " + w2);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

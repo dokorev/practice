@@ -12,17 +12,42 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String s = in.nextLine();
-                String max = "";
-                for (int i = 0; i + 1 < s.length(); i++) {
-                    for (int j = i +1; j < s.length(); j++) {
-                        String cur = s.substring(0, i) + s.substring(i + 1, j) + s.substring(j + 1);
-                        if (cur.compareTo(max) > 0) {
-                            max = cur;
-                        }
+                char s[] = in.next().toCharArray();
+                if (s[1] == '-') {
+                    if (s[0] == 'x') {
+                        int a = s[2] - '0';
+                        int b = s[4] - '0';
+                        out.println(b + a);
+                    } else if (s[2] == 'x') {
+                        int a = s[0] - '0';
+                        int b = s[4] - '0';
+                        out.println(a - b);
+                    } else if (s[4] == 'x') {
+                        int a = s[0] - '0';
+                        int b = s[2] - '0';
+                        out.println(a - b);
+                    } else {
+                        throw new Error();
                     }
+                } else if (s[1] == '+') {
+                    if (s[0] == 'x') {
+                        int a = s[2] - '0';
+                        int b = s[4] - '0';
+                        out.println(b - a);
+                    } else if (s[2] == 'x') {
+                        int a = s[0] - '0';
+                        int b = s[4] - '0';
+                        out.println(b - a);
+                    } else if (s[4] == 'x') {
+                        int a = s[0] - '0';
+                        int b = s[2] - '0';
+                        out.println(a + b);
+                    } else {
+                        throw new Error();
+                    }
+                } else {
+                    throw new Error();
                 }
-                out.println(max);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

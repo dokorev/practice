@@ -12,19 +12,28 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String s1 = in.next() + ":";
-                String s2 = in.next() + ":";
-                String res = "";
-                while (s1.charAt(0) != ':' || s2.charAt(0) != ':') {
-                    if (s1.compareTo(s2) < 0) {
-                        out.print(s1.charAt(0));
-                        s1 = s1.substring(1);
+                int num = 0;
+                int curLine = 0;
+                for (char c : in.next().toCharArray()) {
+                    if ('0' <= c && c <= '9') {
+                        num = num * 10 + (c - '0');
+                    } else if ('A' <= c && c <= 'Z') {
+                        if (num == 0) {
+                            num = 1;
+                        }
+                        for (int i = 0; i < num; i++) {
+                            out.print(c);
+                            curLine++;
+                            if (curLine == 40) {
+                                out.println();
+                                curLine = 0;
+                            }
+                        }
+                        num = 0;
                     } else {
-                        out.print(s2.charAt(0));
-                        s2 = s2.substring(1);
+                        throw new Error();
                     }
                 }
-                out.println(res);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

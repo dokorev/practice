@@ -12,21 +12,17 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                int len = 1;
-                for (char c : ("aaa" + in.next() + "A").toCharArray()) {
-                    if ('a' <= c && c <= 'z') {
-                        len++;
-                    } else if ('A' <= c && c <= 'z') {
-                        if (len < 2 || 4 < len) {
-                            out.println("No");
-                            return;
+                String s = in.nextLine();
+                String max = "";
+                for (int i = 0; i + 1 < s.length(); i++) {
+                    for (int j = i +1; j < s.length(); j++) {
+                        String cur = s.substring(0, i) + s.substring(i + 1, j) + s.substring(j + 1);
+                        if (cur.compareTo(max) > 0) {
+                            max = cur;
                         }
-                        len = 1;
-                    } else {
-                        throw new Error();
                     }
                 }
-                out.println("Yes");
+                out.println(max);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

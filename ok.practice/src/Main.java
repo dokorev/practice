@@ -12,18 +12,25 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String s= in.next();
-                char LetterK = s.charAt(0);
-                char DigitK = s.charAt(1);
-                for (char letter = 'a'; letter <= 'h'; letter++) {
-                    for (char digit = '1'; digit <= '8'; digit++) {
-                        int d1 = LetterK - letter;
-                        int dd = DigitK - digit;
-                        if (d1 * d1 + dd * dd == 5) {
-                            out.println("" + letter + digit);
+                String l = in.nextLine();
+                char a[] = l.substring(0, 4).toCharArray();
+                char b[] = l.substring(5, 9).toCharArray();
+                int bulls = 0;
+                int cows = 0;
+                for (int i = 0; i <= 3; i++) {
+                    if (a[i] == b[i]) {
+                        bulls++;
+                    }
+                }
+                for (int i = 0; i <= 3; i++) {
+                    for(int j = 0; j <= 3; j++) {
+                        if (i != j && a[i] == b[j]) {
+                            cows++;
+                            break;
                         }
                     }
                 }
+                out.println(bulls + " " + cows);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

@@ -4,7 +4,13 @@
     public class Main {
         // functions if needed
         // vvvvvvvvv
-
+        public static boolean[] getDigits(String s) {
+            boolean wasDigit[] = new boolean[10];
+            for (char c : s.toCharArray()) {
+                wasDigit[c - '0'] = true;
+            }
+            return wasDigit;
+        }
         // ^^^^^^^^^
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
@@ -12,19 +18,28 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String s= in.next();
-                String t=  in.next();
-                int si = 0;
-                for (int ti = 0; ti < t.length(); ti++) {
-                    if (s.charAt(si) == t.charAt(ti)) {
-                        si++;
-                        if (si == s.length()) {
-                            out.println("YES");
-                            return;
-                        }
+                boolean a[] = getDigits(in.next());
+                boolean b[] = getDigits(in.next());
+                boolean c[] = getDigits(in.next());
+                int count = 0;
+                for (int i = 0; i < 10; i++) {
+                    if (a[i] && b[i] && c[i]) {
+                        count++;
                     }
                 }
-                out.println("NO");
+                out.println(count);
+                boolean first = true;
+                for (int i = 0; i < 10; i++) {
+                    if (a[i] && b[i] && c[i]) {
+                        if (first) {
+                            first = false;
+                        } else {
+                            out.print(" ");
+                        }
+                        out.print(i);
+                    }
+                }
+
                 // ^^^^^^^^^^
             } finally {
                 out.close();

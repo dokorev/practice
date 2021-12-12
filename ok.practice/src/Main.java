@@ -4,17 +4,22 @@
     public class Main {
         // functions if needed
         // vvvvvvvvv
-        public static int plusMinSum(String s) {
-            int sum = 0;
-            for (int i = 0; i < s.length(); i++) {
-                int d = s.charAt(i) - '0';
-                if (i % 2 == 0) {
-                    sum += d;
-                } else {
-                    sum -= d;
+        public static boolean sameChars(String s) {
+            for (int i  = 1;i < s.length(); i++) {
+                if (s.charAt(i) != s.charAt(0)) {
+                   return false;
                 }
             }
-            return sum;
+            return true;
+        }
+
+        public static boolean isPal(String s) {
+            for (int i = 0; i < s.length() - 1 - i; i++) {
+                if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
+                    return false;
+                }
+            }
+            return true;
         }
         // ^^^^^^^^^
         public static void main(String[] args) {
@@ -24,11 +29,14 @@
                 // your solution
                 // vvvvvvvvvv
                 String s= in.next();
-                int max = Integer.MIN_VALUE;
-                for (int i = 0; i < s.length(); i++) {
-                    max =  Math.max(max, plusMinSum(s.substring(0, i) + s.substring(i + 1)));
+                if (sameChars(s)) {
+                    out.println("NO SOLUTION");
+                    return;
+                } else if (isPal(s)) {
+                    out.println(s.substring(1));
+                } else {
+                    out.println(s);
                 }
-                out.println(max);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

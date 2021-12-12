@@ -12,12 +12,32 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String start = in.next();
-                int n = in.nextInt();
-                if (start.compareTo("School") == 0 && n % 2 == 0) {
-                    out.println("No");
-                } else {
-                    out.println("Yes");
+                int sizeI = in.nextInt();
+                int sizeJ = in.nextInt();
+                int minI = Integer.MAX_VALUE;
+                int maxI = Integer.MIN_VALUE;
+                int minJ = Integer.MAX_VALUE;
+                int maxJ = Integer.MIN_VALUE;
+                for (int i = 0; i < sizeI; i++) {
+                    char a[] = in.next().toCharArray();
+                    for (int j = 0; j < sizeJ; j++) {
+                        if (a[j] == '*') {
+                            minI = Math.min(minI, i);
+                            maxI = Math.max(maxI, i);
+                            minJ = Math.min(minJ, j);
+                            maxJ = Math.max(maxJ, j);
+                        }
+                    }
+                }
+                for (int i = 0; i < sizeI; i++) {
+                    for (int j = 0; j < sizeJ; j++) {
+                        if (minI <= i && i <= maxI && minJ <= j && j <= maxJ) {
+                            out.print('*');
+                        } else {
+                            out.print('.');
+                        }
+                    }
+                    out.println();
                 }
                 // ^^^^^^^^^^
             } finally {

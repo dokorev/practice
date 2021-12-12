@@ -4,12 +4,37 @@
     public class Main {
         // functions if needed
         // vvvvvvvvv
-        public static boolean[] getDigits(String s) {
-            boolean wasDigit[] = new boolean[10];
-            for (char c : s.toCharArray()) {
-                wasDigit[c - '0'] = true;
+
+        public static boolean belongs(String s) {
+            if (s.length() % 3 != 0) {
+                return false;
             }
-            return wasDigit;
+            int len = s.length() / 3;
+            for (int i = 0; i < len; i ++) {
+                if (s.charAt(i) != '0') {
+                    return false;
+                }
+             }
+            for (int i = len; i < 2 *len; i++) {
+                if (s.charAt(i) != '1') {
+                    return false;
+                }
+            }
+            for (int i = 2 * len; i < 3 *len; i++) {
+                if (s.charAt(i) != '2') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static void solveOne(Scanner in, PrintWriter out) {
+            String s = in.next();
+            if (belongs(s)) {
+                out.println("YES");
+            } else {
+                out.println("NO");
+            }
         }
         // ^^^^^^^^^
         public static void main(String[] args) {
@@ -18,28 +43,10 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                boolean a[] = getDigits(in.next());
-                boolean b[] = getDigits(in.next());
-                boolean c[] = getDigits(in.next());
-                int count = 0;
-                for (int i = 0; i < 10; i++) {
-                    if (a[i] && b[i] && c[i]) {
-                        count++;
-                    }
+                int n = in.nextInt();
+                for (int i = 0; i < n; i++) {
+                    solveOne(in, out);
                 }
-                out.println(count);
-                boolean first = true;
-                for (int i = 0; i < 10; i++) {
-                    if (a[i] && b[i] && c[i]) {
-                        if (first) {
-                            first = false;
-                        } else {
-                            out.print(" ");
-                        }
-                        out.print(i);
-                    }
-                }
-
                 // ^^^^^^^^^^
             } finally {
                 out.close();

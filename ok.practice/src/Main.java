@@ -12,18 +12,27 @@
                 try {
                     // your solution
                     // vvvvvvvvvv
-                    int n = in.nextInt();
-                    for (int step = 26; step >= 1; step--) {
-                        if (n==1) {
-                            out.println((char) ('a' + (step - 1)));
-                            return;
-                        } else if (n <= 1 << (step - 1)) {
-                            n--;
-                        } else {
-                            n-= 1 << (step - 1);
+                    in.useDelimiter("(\\s|,)+");
+                    String pos1 = in.next();
+                    String pos2 = in.next();
+                    char letter1 = pos1.charAt(0);
+                    char digit1 = pos1.charAt(1);
+                    char letter2 = pos2.charAt(0);
+                    char digit2 = pos2.charAt(1);
+                    if ((letter1 - letter2) * (letter1 - letter2) + (digit1 - digit2) * (digit1 - digit2) == 5) {
+                        out.println(1);
+                        return;
+                    }
+                    for (char letter = 'a'; letter <= 'h'; letter++) {
+                        for (char digit = '1'; digit <= '8'; digit++) {
+                            if ((letter1 - letter) * (letter1 - letter) + (digit1 - digit) * (digit1 - digit) == 5
+                                    && (letter2 - letter) * (letter2 - letter) + (digit2 - digit) * (digit2 - digit) == 5) {
+                                out.println(2);
+                                return;
+                            }
                         }
                     }
-                    throw new Error();
+                    out.println("NO");
                     // ^^^^^^^^^^
                 } finally {
                     out.close();

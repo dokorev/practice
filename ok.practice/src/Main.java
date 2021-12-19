@@ -4,7 +4,27 @@
     public class Main {
         // functions if needed
         // vvvvvvvvv
+        public static char encode(char c, int shift) {
+            if ('A' <= c && c <= 'Z') {
+               return (char) ((c - 'A' + shift) % 26 + 'A');
+            } else {
+                throw new Error();
+            }
+        }
 
+
+        public static String encode(String s, int shift) {
+            String r = "";
+            for (char c : s.toCharArray()) {
+                r += encode(c, shift);
+            }
+            return r;
+        }
+
+
+        public static String decode(String s, int shift) {
+            return encode(s, 26 - shift);
+        }
         // ^^^^^^^^^
         public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
@@ -12,26 +32,16 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String s;
-                if (in.hasNext()) {
-                    s= in.next();
-                } else {
-                    s = "";
-                }
-                if (s.length() >= 1) {
-                    out.print(s.charAt(0));
-                }
-                int a = 1;
-                int b = 1;
-                while (true) {
-                    int c = a + b;
-                    if (c > s.length()) {
-                        break;
+                String Et = in.next();
+                String word = in.next();
+                for (int shift = 0; shift < 26; shift++) {
+                    String Ew = encode(word, shift);
+                    if (Et.contains(Ew)) {
+                        out.println(decode(Et,shift));
+                        return;
                     }
-                    out.print(s.charAt(c-1));
-                    a = b;
-                    b = c;
                 }
+                out.println("IMPOSSIBLE");
                 // ^^^^^^^^^^
             } finally {
                 out.close();

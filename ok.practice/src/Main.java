@@ -12,49 +12,34 @@
                 try {
                     // your solution
                     // vvvvvvvvvv
-                    int a[] = new int[in.nextInt()];
-                    for (int i = 0; i < a.length; i++) {
-                        a[i] = in.nextInt();
-                    }
-                    Arrays.sort(a);
-                    a = Arrays.copyOf(a, a.length + 1);
-                    a[a.length - 1] = a[a.length - 2] + 2;
-                    StringBuilder commaSeperated = new StringBuilder();
-                    int groupFirst = -1;
-                    int groupLast = -1;
-                    boolean first = true;
-                    for (int i = 0; i < a.length; i++) {
-                        if (i == 0) {
-                            commaSeperated.append(a[i]);
-                            groupFirst = a[i];
-                            groupLast = a[i];
-                        } else {
-                            if (a[i] == a[i - 1]) {
-
-                            } else if (a[i] == a[i-1] + 1) {
-                                commaSeperated.append(", ");
-                                commaSeperated.append(a[i]);
-                                groupLast++;
-                            } else {
-                                String withDots = groupFirst + ", ..., " + groupLast;
-                                if (first) {
-                                    first = false;
-                                } else {
-                                    out.print(", ");
+                    String s = in.next();
+                    int k = in.nextInt();
+                    if (k > 0) {
+                        int count = 0;
+                        for (int i = 0; i < k; i++) {
+                            for (int j = 0; j < s.length(); j++) {
+                                out.print(s.charAt(j));
+                                count++;
+                                if (count == 1023) {
+                                    return;
                                 }
-                                if (withDots.length() < commaSeperated.length()) {
-                                    out.print(withDots);
-                                } else {
-                                    out.print(commaSeperated);
-                                }
-                                commaSeperated.setLength(0);
-                                commaSeperated.append(a[i]);
-                                groupFirst = a[i];
-                                groupLast = a[i];
                             }
                         }
+                    } else {
+                        k = -k;
+                        if (s.length() % k != 0) {
+                            out.println("NO SOLUTION");
+                            return;
+                        }
+                        int shift = s.length() / k;
+                        for (int i = shift; i < s.length(); i++) {
+                            if (s.charAt(i) != s.charAt(i - shift)) {
+                                out.println("NO SOLUTION");
+                                return;
+                            }
+                        }
+                        out.println(s.substring(0, shift));
                     }
-
                     // ^^^^^^^^^^
                 } finally {
                     out.close();

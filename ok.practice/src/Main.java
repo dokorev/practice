@@ -12,27 +12,49 @@
                 try {
                     // your solution
                     // vvvvvvvvvv
-                    in.useDelimiter("(\\s|,)+");
-                    String pos1 = in.next();
-                    String pos2 = in.next();
-                    char letter1 = pos1.charAt(0);
-                    char digit1 = pos1.charAt(1);
-                    char letter2 = pos2.charAt(0);
-                    char digit2 = pos2.charAt(1);
-                    if ((letter1 - letter2) * (letter1 - letter2) + (digit1 - digit2) * (digit1 - digit2) == 5) {
-                        out.println(1);
-                        return;
+                    int a[] = new int[in.nextInt()];
+                    for (int i = 0; i < a.length; i++) {
+                        a[i] = in.nextInt();
                     }
-                    for (char letter = 'a'; letter <= 'h'; letter++) {
-                        for (char digit = '1'; digit <= '8'; digit++) {
-                            if ((letter1 - letter) * (letter1 - letter) + (digit1 - digit) * (digit1 - digit) == 5
-                                    && (letter2 - letter) * (letter2 - letter) + (digit2 - digit) * (digit2 - digit) == 5) {
-                                out.println(2);
-                                return;
+                    Arrays.sort(a);
+                    a = Arrays.copyOf(a, a.length + 1);
+                    a[a.length - 1] = a[a.length - 2] + 2;
+                    StringBuilder commaSeperated = new StringBuilder();
+                    int groupFirst = -1;
+                    int groupLast = -1;
+                    boolean first = true;
+                    for (int i = 0; i < a.length; i++) {
+                        if (i == 0) {
+                            commaSeperated.append(a[i]);
+                            groupFirst = a[i];
+                            groupLast = a[i];
+                        } else {
+                            if (a[i] == a[i - 1]) {
+
+                            } else if (a[i] == a[i-1] + 1) {
+                                commaSeperated.append(", ");
+                                commaSeperated.append(a[i]);
+                                groupLast++;
+                            } else {
+                                String withDots = groupFirst + ", ..., " + groupLast;
+                                if (first) {
+                                    first = false;
+                                } else {
+                                    out.print(", ");
+                                }
+                                if (withDots.length() < commaSeperated.length()) {
+                                    out.print(withDots);
+                                } else {
+                                    out.print(commaSeperated);
+                                }
+                                commaSeperated.setLength(0);
+                                commaSeperated.append(a[i]);
+                                groupFirst = a[i];
+                                groupLast = a[i];
                             }
                         }
                     }
-                    out.println("NO");
+
                     // ^^^^^^^^^^
                 } finally {
                     out.close();

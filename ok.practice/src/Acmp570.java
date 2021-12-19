@@ -12,7 +12,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Acmp570 {
     // functions if needed
     // vvvvvvvvv
 

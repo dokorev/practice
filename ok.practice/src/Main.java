@@ -12,34 +12,19 @@
                 try {
                     // your solution
                     // vvvvvvvvvv
-                    String s = in.next();
-                    int k = in.nextInt();
-                    if (k > 0) {
-                        int count = 0;
-                        for (int i = 0; i < k; i++) {
-                            for (int j = 0; j < s.length(); j++) {
-                                out.print(s.charAt(j));
-                                count++;
-                                if (count == 1023) {
-                                    return;
-                                }
-                            }
-                        }
-                    } else {
-                        k = -k;
-                        if (s.length() % k != 0) {
-                            out.println("NO SOLUTION");
+                    String a[] = new String[in.nextInt()];
+                    for (int i = 0; i < a.length; i++) {
+                        a[i] = "" + (i + 1);
+                    }
+                    Arrays.sort(a);
+                    String chosen = "" + in.nextInt();
+                    for (int i = 0; i < a.length; i++) {
+                        if (a[i].compareTo(chosen) == 0) {
+                            out.println(i + 1);
                             return;
                         }
-                        int shift = s.length() / k;
-                        for (int i = shift; i < s.length(); i++) {
-                            if (s.charAt(i) != s.charAt(i - shift)) {
-                                out.println("NO SOLUTION");
-                                return;
-                            }
-                        }
-                        out.println(s.substring(0, shift));
                     }
+                        throw new Error();
                     // ^^^^^^^^^^
                 } finally {
                     out.close();

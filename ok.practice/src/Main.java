@@ -12,28 +12,36 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String s;
-                if (in.hasNext()) {
-                    s = in.next();
-                } else {
-                    s = "";
+                int sizeI = in.nextInt();
+                int sizeJ= in.nextInt();
+                boolean isMine[][] = new boolean [1 + sizeI + 1][1 + sizeJ + 1];
+                int nMines = in.nextInt();
+                for (int m = 0; m < nMines; m++) {
+                    int i = in.nextInt();
+                    int j = in.nextInt();
+                    isMine[i][j] = true;
                 }
-                for (int i = 0; i < s.length(); i++) {
-                    char c = s.charAt(i);
-                    int code;
-                    if ('0' <= c && c <= '9') {
-                        code = c - '0';
-                    } else if ('A' <= c && c <= 'Q') {
-                        code = c - 'A' + 10;
-                    } else {
-                        throw new Error();
+                for (int i = 1; i <= sizeI;i++) {
+                    for (int j = 1; j <= sizeJ; j++) {
+                        if (isMine[i][j]) {
+                            out.print('*');
+                        } else {
+                            int count = 0;
+                            for (int di = -1; di <= 1; di ++) {
+                                for (int dj = -1; dj <= 1; dj++) {
+                                    if (isMine[i + di][j + dj]) {
+                                        count++;
+                                    }
+                                }
+                            }
+                            if (count == 0) {
+                                out.print('.');
+                            } else {
+                                out.print(count);
+                            }
+                        }
                     }
-                    code = ((code - (i+1)) % 27 + 27) % 27;
-                    if (code == 0) {
-                        out.print(' ');
-                    } else {
-                        out.print((char) ('a' + (code - 1)));
-                    }
+                    out.println();
                 }
                 // ^^^^^^^^^^
             } finally {

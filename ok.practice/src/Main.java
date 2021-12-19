@@ -1,50 +1,32 @@
-    // acmp.ru
-    import java.io.*;
-    import java.util.*;
-    public class Main {
-        // functions if needed
-        // vvvvvvvvv
-        public static char encode(char c, int shift) {
-            if ('A' <= c && c <= 'Z') {
-               return (char) ((c - 'A' + shift) % 26 + 'A');
-            } else {
-                throw new Error();
-            }
-        }
+        // acmp.ru
+        import java.io.*;
+        import java.util.*;
+        public class Main {
+            // functions if needed
+            // vvvvvvvvv
 
-
-        public static String encode(String s, int shift) {
-            String r = "";
-            for (char c : s.toCharArray()) {
-                r += encode(c, shift);
-            }
-            return r;
-        }
-
-
-        public static String decode(String s, int shift) {
-            return encode(s, 26 - shift);
-        }
-        // ^^^^^^^^^
-        public static void main(String[] args) {
-            Scanner in = new Scanner(System.in);
-            PrintWriter out = new PrintWriter(System.out);
-            try {
-                // your solution
-                // vvvvvvvvvv
-                String Et = in.next();
-                String word = in.next();
-                for (int shift = 0; shift < 26; shift++) {
-                    String Ew = encode(word, shift);
-                    if (Et.contains(Ew)) {
-                        out.println(decode(Et,shift));
-                        return;
+            // ^^^^^^^^^
+            public static void main(String[] args) {
+                Scanner in = new Scanner(System.in);
+                PrintWriter out = new PrintWriter(System.out);
+                try {
+                    // your solution
+                    // vvvvvvvvvv
+                    int n = in.nextInt();
+                    for (int step = 26; step >= 1; step--) {
+                        if (n==1) {
+                            out.println((char) ('a' + (step - 1)));
+                            return;
+                        } else if (n <= 1 << (step - 1)) {
+                            n--;
+                        } else {
+                            n-= 1 << (step - 1);
+                        }
                     }
+                    throw new Error();
+                    // ^^^^^^^^^^
+                } finally {
+                    out.close();
                 }
-                out.println("IMPOSSIBLE");
-                // ^^^^^^^^^^
-            } finally {
-                out.close();
             }
         }
-    }

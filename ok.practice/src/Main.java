@@ -12,36 +12,25 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                int sizeI = in.nextInt();
-                int sizeJ= in.nextInt();
-                boolean isMine[][] = new boolean [1 + sizeI + 1][1 + sizeJ + 1];
-                int nMines = in.nextInt();
-                for (int m = 0; m < nMines; m++) {
-                    int i = in.nextInt();
-                    int j = in.nextInt();
-                    isMine[i][j] = true;
+                String s;
+                if (in.hasNext()) {
+                    s= in.next();
+                } else {
+                    s = "";
                 }
-                for (int i = 1; i <= sizeI;i++) {
-                    for (int j = 1; j <= sizeJ; j++) {
-                        if (isMine[i][j]) {
-                            out.print('*');
-                        } else {
-                            int count = 0;
-                            for (int di = -1; di <= 1; di ++) {
-                                for (int dj = -1; dj <= 1; dj++) {
-                                    if (isMine[i + di][j + dj]) {
-                                        count++;
-                                    }
-                                }
-                            }
-                            if (count == 0) {
-                                out.print('.');
-                            } else {
-                                out.print(count);
-                            }
-                        }
+                if (s.length() >= 1) {
+                    out.print(s.charAt(0));
+                }
+                int a = 1;
+                int b = 1;
+                while (true) {
+                    int c = a + b;
+                    if (c > s.length()) {
+                        break;
                     }
-                    out.println();
+                    out.print(s.charAt(c-1));
+                    a = b;
+                    b = c;
                 }
                 // ^^^^^^^^^^
             } finally {

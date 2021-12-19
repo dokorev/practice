@@ -12,30 +12,29 @@
             try {
                 // your solution
                 // vvvvvvvvvv
-                String str = in.nextLine();
-                char s[] = str.toCharArray();
-                int n = str.length();
-                boolean a[] = new boolean [1000];
-                for (int i = 0; i < n-2; i++) {
-                    for (int j = i + 1; j < n-1; j++) {
-                        for (int k = j + 1; k < n; k++) {
-                            int singles = s[k] - '0';
-                            int tens = s[j] - '0';
-                            int hund = s[i] - '0';
-                            int number = hund * 100 + tens * 10 + singles;
-                            if (hund >= 1) {
-                                a[number] = true;
-                            }
-                        }
+                String s;
+                if (in.hasNext()) {
+                    s = in.next();
+                } else {
+                    s = "";
+                }
+                for (int i = 0; i < s.length(); i++) {
+                    char c = s.charAt(i);
+                    int code;
+                    if ('0' <= c && c <= '9') {
+                        code = c - '0';
+                    } else if ('A' <= c && c <= 'Q') {
+                        code = c - 'A' + 10;
+                    } else {
+                        throw new Error();
+                    }
+                    code = ((code - (i+1)) % 27 + 27) % 27;
+                    if (code == 0) {
+                        out.print(' ');
+                    } else {
+                        out.print((char) ('a' + (code - 1)));
                     }
                 }
-                int ans = 0;
-                for (int i = 0; i < a.length; i++) {
-                    if (a[i] == true) {
-                        ans++;
-                    }
-                }
-                out.println(ans);
                 // ^^^^^^^^^^
             } finally {
                 out.close();

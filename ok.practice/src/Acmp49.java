@@ -12,7 +12,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Acmp49 {
     // functions if needed
     // vvvvvvvvv
     public static boolean matches(char c, char tc) {

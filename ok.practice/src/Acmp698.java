@@ -12,7 +12,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Acmp698 {
     // functions if needed
     // vvvvvvvvv
     public static int rankToInt(char c) {

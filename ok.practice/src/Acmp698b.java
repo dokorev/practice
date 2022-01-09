@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Acmp698b {
     // functions if needed
     // vvvvvvvvv
     public static int suitToInt(char c) {
@@ -51,8 +51,8 @@ public class Main {
         if (s != t) {
             for (int i = 0; i <= 8; i++) {
                 if (cards[t][i]) {
-                   cards[t][i] = false;
-                   return true;
+                    cards[t][i] = false;
+                    return true;
                 }
             }
         }

@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Acmp102 {
     // functions if needed
     // vvvvvvvvv
     public static int area2(int x1, int y1, int x2, int y2, int x3, int y3) {

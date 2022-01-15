@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Acmp400 {
     // functions if needed
     // vvvvvvvvv
     public static class Side {
